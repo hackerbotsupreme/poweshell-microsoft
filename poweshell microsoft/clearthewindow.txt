@@ -1,0 +1,253 @@
+ctrl + l is the clear the window/tab . 
+///////////////////////////////////////////////////
+
+PS C:\Users\rekha> Get-Alias -definition get-process
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           gps -> Get-Process
+Alias           ps -> Get-Process - what does this means/says ?
+
+ChatGPT
+Yes, it's correct.
+
+This output from the Get-Alias cmdlet in PowerShell is showing two aliases: gps and ps both mapped to the Get-Process cmdlet.
+
+Real-world application: This aliasing allows users to use shorthand commands to access frequently used cmdlets, saving time and reducing typing errors.
+
+Critical points:
+
+Get-Alias is a PowerShell cmdlet used to display the aliases in the current session.
+gps and ps are aliases for the Get-Process cmdlet.
+Aliases are shortcuts for longer commands, making PowerShell more efficient.
+Short summary of more real-world applications and approaches:
+
+Aliases are essential for improving productivity in PowerShell by providing shorter, more convenient ways to run cmdlets.
+Users can create their custom aliases for commands they frequently use using the Set-Alias cmdlet.
+Best practices:
+
+Use aliases judiciously; while they save time, they should not compromise code readability.
+Document custom aliases to make your scripts more understandable for others.
+Be cautious when creating aliases to avoid conflicts with existing cmdlet names.
+
+
+///////////////////////////////////////////////////
+
+what do you mean by - in the current session
+ChatGPT
+"In the current session" means within the current instance of PowerShell that you are running.
+
+Real-world application: Imagine you open PowerShell, execute some commands, and then close it. Everything you did in that PowerShell window is part of one session. When you open a new PowerShell window, it starts a new session, and any previous commands or variables you defined in a previous session are not available.
+
+Critical points:
+
+A session in PowerShell refers to the period during which you interact with the PowerShell environment, typically from the time you open it until you close it.
+Each session is isolated from others, so variables, aliases, and settings you configure are only valid for that specific session.
+Short summary of more real-world applications and approaches:
+
+Sessions are essential for keeping your work organized and preventing conflicts between different instances of PowerShell.
+If you need to use settings, variables, or aliases across multiple sessions, you can define them in your PowerShell profile script, which is loaded automatically when you start a new session.
+Best practices:
+
+Understand the concept of sessions to manage your PowerShell work effectively.
+Use profiles to customize and share settings and configurations between sessions if needed.
+
+///////////////////////////////////////////////////
+
+in short , 
+    Get-Alias - Gets all the aliases in the current session.
+    New-Alias - Creates a new alias.
+    Set-Alias - Creates or changes an alias.
+    Remove-Alias - Deletes an alias.
+    Export-Alias - Exports one or more aliases to a file.
+    Import-Alias - Imports an alias file into PowerShell.
+
+///////////////////////////////////////////////////
+powershell version command
+Within PowerShell itself
+You can also use a Run command, by clicking the Windows key + R and then searching for PowerShell. A window will open, where you enter the command “$PSVersionTable”, and hit the Enter key. Below you can see the PowerShell version included in the list of information
+
+
+PS C:\Users\rekha> $PSVersionTable
+
+Name                           Value
+----                           -----
+PSVersion                      7.3.7
+PSEdition                      Core
+GitCommitId                    7.3.7
+OS                             Microsoft Windows 10.0.22623
+Platform                       Win32NT
+PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0…}
+PSRemotingProtocolVersion      2.3
+SerializationVersion           1.1.0.1
+WSManStackVersion              3.0
+
+///////////////////////////////////////////////////
+
+make a folder/directory 
+
+PS C:\Users\rekha> mkdir  milan
+
+    Directory: C:\Users\rekha
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          04-10-2023    21:12                milan
+
+
+///////////////////////////////////////////////////
+
+to seek help on a cmdlet ,
+
+use 
+Get-Help Get-Counter -Online
+type Get-Help followed by the cmdlet name, such as: Get-Help Get-Process 
+
+///////////////////////////////////////////////////
+
+how to get the list of all cmdlet in powershell
+
+By default, Get-Command 
+gets all cmdlets, functions, and aliases. The acceptable values for this
+ parameter are: Alias : Gets the aliases of all PowerShell commands. For more information, 
+ see about_Aliases.
+
+///////////////////////////////////////////////////
+
+Get-WinEvent -ListLog * - what does this do ?
+
+ChatGPT
+The PowerShell command Get-WinEvent -ListLog * is used to retrieve a list of all available event logs on a Windows system. Let's break down what this command does:
+
+Get-WinEvent: This is a PowerShell cmdlet used for working with event logs. It can be used to query and retrieve event log data.
+
+-ListLog: This is a parameter of the Get-WinEvent cmdlet, and it instructs the cmdlet to list event logs rather than retrieving specific event records. It essentially tells PowerShell that you want information about the available event logs.
+
+*: The asterisk (*) is a wildcard character, which, when used with -ListLog, indicates that you want to list all event logs, regardless of their names or categories.
+
+What It Does:
+When you run Get-WinEvent -ListLog *, the command will query the Windows system for a list of all event logs, including the built-in logs like Application, System, and Security, as well as any custom event logs that may have been created.
+
+
+///////////////////////////////////////////////////
+Hey! I'm Ruud. I work as a SysAdmin in the Netherlands and I love to write about IT, Office 365, Smart Home stuff, and PowerShell. 
+
+Rudy Mens
+Most Valuable Professionals
+
+
+How To use the IPConfig Command and Options Explained
+Last updated October 14, 2021 by Rudy Mens14 Comments
+The ipconfig command is used to display information about your network configuration and refresh DHCP and DNS Settings. By default, the ipconfig command displays your IP Address, Subnet Mask, and default gateway. But with correct parameters, you can get a lot more information out of it.
+
+In this article, I will explain the ipconfig command and the different options that you can use.
+
+How to use ipconfig command
+So let’s first start with something simple, how to use the ipconfig command.
+
+Press Windows key + X or Right Click on the start menu
+To use the IP config command we will need to open Command Prompt or PowerShell
+
+Select Windows PowerShell or Command Prompt
+Open PowerShell
+Type ipconfig and press enter
+This will show you the basic network information from your network adapters
+
+ipconfig command
+As you can see in the screenshot above, the command will return information about each network adapter on your computer. In this case, we have an ethernet adapter (for our wired network connection) and a wireless network adapter.
+
+If you are using a VPN client, then this will also be listed as a network adapter.
+
+Ipconfig /all command
+Without the use of any parameter, the command shows only the basic network information. But information about the DNS and DHCP servers isn’t displayed by default. To show all the information about your network adapter, you will need to use the /all parameter.
+
+ipconfig /all
+This will return the following information for each network adapter in your device:
+
+
+Physical Address	This is the MAC address of your network adapter.
+DHCP Enabled	Indicates if the network connection is using DHCP or Static IP Address
+IPv4 Address	The IP Address of your computer
+Default Gateway	The router to which your computer is connected
+DHCP Server	Router/server that hands out IP Addresses in your network
+DNS Servers	Servers used to translate domain names to IP Addresses
+Link-Local IPv6 Address	IPv6 address of your computer (often not used)
+Lease Obtained	Date-time when your computer received the IP Address
+ipconfig command
+ipconfig all
+The ipconfig /all command is often used to troubleshoot network connection problems. But which information is important and do you need to look at?
+
+
+If we take a closer look at the results of ipconfig /all then we can indicate 4 items that are important to look at:
+
+ipconfig all explained
+IPv4 Address – This is your IP Address
+Default Gateway – The router or modem to which you network package are sent
+DNS servers – Used to translate domain names to IP Addresses
+DHCP Enabled – Needs to be Yes in most cases. No means that you have manually enter an IP Address
+Ipconfig /release Command
+The ipconfig command doesn’t only show your information about your network settings, but it can also be used to reset or refresh your network settings. When you have DHCP enabled on your network card, you can request a new IP Address from the DHCP server.
+
+Learn more about DHCP
+
+If you want to know more about how DHCP works, then make sure you read this article.
+The first step to do this is to release the current IP Address. This means that we will inform the DHCP server that we don’t want to use the assigned IP Address any longer.
+
+
+ipconfig /release
+By default, the command will release the IP Addresses for all network adapters. You can also specify a single network adapter. To do this you will need to enter the name of the adapter that you find here in the results of ipconfig:
+
+ipconfig command
+For example, if you only want to release the IP Address of your wireless network adapter, you can type:
+
+ipconfig /release Wireless*
+This will release the IP Address of all adapters where the name starts with “Wireless”.
+
+Ipconfig /renew Command
+After you have released the IP Address you will need to request a new one from the DHCP Server. We can do this with the Ipconfig /renew command:
+
+ipconfig /renew
+When the renew was successful you will see the same output as the ipconfig command, an overview of your new IP Address, subnet mask, and gateway.
+
+
+ipconfig /renew
+Again, we can specify a single network adapter by specifying the name of the adapter.
+
+
+ipconfig /renew Wireless*
+Ipconfig /DisplayDNS
+Your computer keeps a local cache of all DNS records that it’s has visited. This cache is used to quickly translate the domain names to the correct IP Address. This way your computer doesn’t have to contact the DNS server every time when you visit Google.com for example.
+
+To view the content of the DNS cache you can use the command ipconfig /displaydns.
+
+ipconfig /displaydns
+This will show every DNS record in your DNS cache:
+
+
+ipconfig diplaydns
+You often don’t need to go through the records, but let me explain a little bit about what we are seeing here:
+
+
+Records Name	The DNS name of the records
+Record Type	The number indicates if it’s an A (1) record, or CNAME (5) for example
+Time To Live	Time in seconds that the records are valid. After that, the records are purged
+Date Length	The length in bytes of the record in your memory
+Section	Can be Answer or Additional. The latter are related answers that
+your computer did not ask for it but is given anyway by the DNS server.
+Record	The actual value of the record
+Ipconfig /DisplayDNS explained
+Flush DNS Command
+Sometimes your DNS Cache contains outdated records, which can result in DNS-related errors (unable to reach websites for example). You can solve this often by using the flush dns command:
+
+
+# Flush DNS Command
+ipconfig /flushdns
+The command ipconfig /flushdns clears out your DNS Cache. You can do this without any risk, your computer will simply request new, and up-to-date DNS records from the DNS servers.
+
+flush dns command
+//////////////////////////////////////////////////////////////////////////////////////
+
+to look lie a hacker use  , 
+color a 
+and also you can use ctrl + up/down button to go to the previous and next typed commands 
+//////////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,111 @@
+$ New-selfsignedcertificate 
+Get-PSDrive
+$dir cert:\CurrentUser -Recurse -Codesigningcert -Outputvariable a 
+$a 
+$cert = $a[0]
+Get-ExecutionPolicy 
+
+
+
+
+
+# execution policy 
+1. by default , powershell does not run scripts .
+2. get/set-execution policy 
+3. restricted 
+4. unrestricted 
+5. allsigned 
+6. remotesigned 
+7.bypass
+8.undefined 
+9. can be set with group policy 
+
+
+                        what is the difference between allsigned and remote signed in powershell 
+In PowerShell, there are several execution policies that determine which scripts can be run on a system. Two of these execution policies are "AllSigned" and "RemoteSigned".
+
+"RemoteSigned" is an execution policy that allows scripts to run if they are locally created and signed by a trusted publisher or if they are remotely downloaded and signed by a trusted publisher. This execution policy is useful for running scripts that are created by a trusted source but downloaded from the internet or other untrusted sources.
+
+"AllSigned" is an execution policy that requires all scripts to be digitally signed by a trusted publisher before they can be executed on the system, regardless of whether they are local or remote. This execution policy provides a higher level of security and is typically used in environments where security is a top priority.
+
+In summary, "RemoteSigned" allows locally created scripts and remotely downloaded scripts signed by a trusted publisher to be executed, while "AllSigned" requires all scripts to be digitally signed by a trusted publisher before they can be executed.
+
+
+
+
+                                         what are providers in powershell 
+In PowerShell, a provider is a module or extension that allows you to interact with a particular data store, such as the file system, registry, or certificate store, using a consistent set of cmdlets and commands.
+
+Providers in PowerShell are similar to drivers in an operating system. They act as an interface between PowerShell and a particular data store or resource, providing a set of cmdlets that can be used to manipulate and query that resource.
+
+PowerShell includes several built-in providers, such as:
+
+File system provider: allows you to navigate and manipulate files and directories on the local file system or network shares.
+Registry provider: allows you to navigate and manipulate the Windows registry.
+Certificate provider: allows you to work with X.509 certificates in the certificate store.
+Environment provider: allows you to view and modify environment variables.
+In addition to the built-in providers, you can also create your own custom providers to interact with other data stores or resources that are not supported by the built-in providers. This allows you to extend the functionality of PowerShell and create a consistent and easy-to-use interface for managing your systems and resources.
+
+powershell command to find all  the drves in the pc
+You can use the Get-PSDrive cmdlet in PowerShell to retrieve a list of all the drives available on your computer, including file system drives, registry drives, and others.
+
+To find all the drives in your PC, open PowerShell and run the following command:
+
+mathematica
+Copy code
+Get-PSDrive
+This will display a list of all the drives on your computer, along with their drive letter, provider (i.e., the type of drive), root, and other details.
+
+Note that some of the drives listed may be virtual or hidden drives that are not accessible in Windows Explorer.
+
+
+            PS C:\Users\rekha> $get-psdrive
+            ParserError:
+            Line |
+            1 |  $get-psdrive
+                |      ~~~~~~~~
+                | Unexpected token '-psdrive' in expression or statement.
+            PS C:\Users\rekha> $ get- psdrive
+            $: The term '$' is not recognized as a name of a cmdlet, function, script file, or executable program.
+            Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+            PS C:\Users\rekha> $get- psdrive
+            ParserError:
+            Line |
+            1 |  $get- psdrive
+                |       ~
+                | You must provide a value expression following the '-' operator.
+            PS C:\Users\rekha> Get-PSDrive
+
+            Name           Used (GB)     Free (GB) Provider      Root                                               CurrentLocation
+            ----           ---------     --------- --------      ----                                               ---------------
+            Alias                                  Alias
+            C                  83.37        153.84 FileSystem    C:\                                                    Users\rekha
+            Cert                                   Certificate   \
+            Env                                    Environment
+            Function                               Function
+            G                   0.00         15.00 FileSystem    G:\
+            HKCU                                   Registry      HKEY_CURRENT_USER
+            HKLM                                   Registry      HKEY_LOCAL_MACHINE
+            Temp               83.36        153.84 FileSystem    C:\Users\rekha\AppData\Local\Temp\
+            Variable                               Variable
+            WSMan                                  WSMan
+
+            PS C:\Users\rekha>
+
+and focus on line 81 , the certificate drive .
+so what i can do is i can do a dir of certificate drive and i do tab completion here .
+what i am doing is i am looking for a code signing search so the interesting thing is when i am in the sertificate 
+drive i can do recurse on any frive of course but i can say give me the codesigning cert then i say outputvariable a 
+$ dir Cert:\CurrentUser -Recurse -Codesigningcert -Outputvariable a 
+and what it did was  it got me did a recursive search found me my codesigning certs 
+i now put thenm in $a and then what i am gonna say is $cert = $a[0]
+got a particular codesigning cset so now  let me get my execuion policy 
+here you can its remote signed here i am gonna change that .
+
+
+            PS C:\Users\rekha> Get-ExecutionPolicy
+            RemoteSigned
+            PS C:\Users\rekha>
+
+
+press  ctrl + space button when you see the atocompletion to see the magic .

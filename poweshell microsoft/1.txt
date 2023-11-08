@@ -1,0 +1,47 @@
+# link to the window  : https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started?view=powershell-7.3
+
+
+Notice that four different shortcuts for PowerShell are shown in Figure 1-1. The computer used for demonstration purposes in this book is running the 64-bit version of Windows 10 so there's a 64-bit version of the PowerShell console and the PowerShell ISE (Integrated Scripting Environment), and a 32-bit version of each one as denoted by the (x86) suffix on the shortcuts. If you happen to be running a 32-bit version of Windows 10, you'll only have two shortcuts. Those items don't have the (x86) suffix, but are 32-bit versions. If you have a 64-bit operating system, my recommendation is to run the 64-bit version of PowerShell unless you have a specific reason for running the 32-bit version.
+Notice that the title bar of the PowerShell console says "Windows PowerShell" as shown in Figure 1-4. Some commands run fine, but PowerShell can't participate in User Access Control (UAC). That means it's unable to prompt for elevation for tasks that require the approval of an administrator. 
+PowerShell is a ise -- which stands for integrated scripting environment 
+If you're logged into Windows as a normal user, you'll be prompted for credentials. I'll enter the credentials for my user account who is a domain user and local admin as shown in Figure 1-6.
+prompt শীঘ্র
+শীঘ্র
+quick, rapid, prompt, tantivy, ill-judged
+তত্পর
+alert, endeavoring, mercurial, enterprising, prompt, quivering
+অবিলম্বে সম্পাদিত
+prompt
+
+how can you scroll around via a combo of key ?
+that is -- tab +  up / down  ---
+
+Now that PowerShell is being run elevated as a local administrator, UAC will no longer be a problem when a command is run on the local computer that would normally require a prompt for elevation. Keep in mind though that any command run from this elevated instance of the PowerShell console, also runs elevated.
+
+To simplify finding PowerShell and launching it as an administrator, I recommend pinning it to the taskbar and setting it to automatically launch as an admin each time it's run.
+
+Search for PowerShell again, except this time right-click on it and select "Pin to taskbar" as shown in Figure 1-8.
+
+
+
+
+what does 'pin from start ' do in laptop 
+The "pin from start" feature on a laptop typically refers to the ability to "pin" frequently used apps or programs to the Windows Start menu or Start screen for quick and easy access.
+
+When you pin an app or program to the Start menu, it will remain in a prominent position on the menu, even after you close the app or restart your computer. This makes it easier to find and launch the app, rather than having to search for it in the list of all installed programs or applications.
+
+To pin an app or program to the Start menu, you can right-click on the app's icon and select "Pin to Start" from the context menu. Alternatively, you can drag and drop the app's icon onto the Start menu to pin it in place.
+
+
+
+
+aloke.geek@gmail.com
+what is the difference between tab and window 
+In the context of a web browser, a tab and a window refer to two different ways of displaying web content.
+
+A tab is a sub-window that appears within a larger window. When you open a new tab in your web browser, you are essentially opening a new browsing session within the same window. You can have multiple tabs open at once, and each tab can display a different web page or website. Tabs are typically displayed as clickable tabs at the top of the browser window, allowing you to easily switch between them.
+
+On the other hand, a window is a separate instance of a browser that runs independently of other browser windows. When you open a new window, you are essentially opening a new instance of the browser, with its own set of tabs and browsing history. Each window can display different web content, and you can have multiple windows open at once.
+
+In summary, a tab is a sub-window within a larger browser window, while a window is a separate instance of the browser that runs independently of other windows. Tabs are used to display multiple web pages within a single browser window, while windows are used to display different sets of tabs and browsing sessions independently of each other.
+# 

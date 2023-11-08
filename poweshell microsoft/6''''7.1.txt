@@ -1,0 +1,201 @@
+# 1.52.45
+extending the shell 
+
+mmc 
+get-module -listavailable 
+get-help *ad* 
+get-service *
+get-process
+get-process |where handles -gt 900
+get-process |where handles -gt 900 |sort handles
+get-service -name bits 
+get-service -name bits |get-member 
+get-service -name bits |gm 
+get-service |select.object -property name,status
+get-childitem
+dir 
+get-childitem |select -property  name,length | sort -property length
+get-childitem |select -property  name,length | sort -property length -descending 
+get-eventlog -logname system -newest 5
+ get-eventlog -logname system -newest 5|gm
+ get-eventlog -logname system -newest 5|select  -property eventid , Timewritten, message
+ get-eventlog -logname system -newest 5|select  -property eventid , Timewritten, message| sort -property Timewritten
+ get-eventlog -logname system -newest 5|select  -property eventid , Timewritten, message| sort -property Timewritten | convertTo-html | out-file c:\error.html
+c:\ error html
+$dir
+say c:\jumpstart\r_and_j.xml
+$x=[xml](cat.\r_and_j.xml)(cat is the same as get content )
+$x 
+$x.gettype()
+$x.play.act 
+$x.play.act[0] 
+$x.play.act[0].scene 
+$x.play.act[0].speech 
+$x.play.act.scene.speech--> this line tells that i want all the scenes and all the acts 
+$x.pay.act.scene.speech |select -first 1 
+$x.play.act.scene.speech |group speaker | sort count 
+get-history 
+
+
+
+
+
+
+# get-module -listavailable  this command shows all the modules that are in my computer .
+and what does the modules have so that we need them ?
+cmdlets 
+what we use to manage active directory and providers  .
+if you have a module with commandlets  hers's is a beautiful thing about powershell. 
+get-help --> donna help me to look through those modules even if it's not loaded .
+get-help *ad*--> with this line we are asking that do we have the cmdlets with active directory.
+and when you want help on the command you found 
+get-help get-adcomputer 
+this will give you the help for it . 
+here on above we can also use get-adcomputer -filter *
+
+
+
+#object for the admin 
+type in get-service *
+what you see you see text right  and that's not what 's realy doing on .
+# what's  going on is whrn i do get-service what i'm actually getiing is i'm getting servivce objects 
+# or service controller objects and the point that objects dramatically simplify your life .
+# what is an object.. an object is just a thing its a noun thst hsd properties and methods 
+so think about a bicycle . a bicycle is an object and it has properties like handles, paddlees , wheels .
+there's some thongs you can do like paddle ,you can steer and we call things methods  .so 'what it has' is its properties .
+
+
+
+
+so here on screen we show this things and what happens is i got a set of objects 
+ the trick is that we spew these objrcts out and then work on them and when they finally get to the display 
+ the display says what i am gonna do with that , there's no way that we burp out this binarry stuff and people 
+ gonna figure out what the display does it says oh now i'll converet it to a obkject 
+
+
+
+
+ now so take that concept on the get-process 
+ the thing is  when i do get-process i'm displaying an object an each of the row is the object itself 
+ each one of these columns here reflects the properties 
+ and what did i tell you i told you we are trying to create a world ehere you think  about ehat you eant 
+ you type it and ypu get it and the way that works is because of objects .
+
+
+
+
+ now lets say i want to get the processes where the handle count is greater than  900 
+ we typre in  
+get-process |where handles -gt 900
+it worked .
+why did it worked becuse of the objects .
+
+
+if you wanna take a look at 
+get-service -name bits 
+notice that there are three properties displayed , well i am preety sure that there is more properties 
+then just three on the service and also i am not seeing any methods here .
+but i just saiid that objects have properties and methods .
+and there is a way to see everything that an object has and its going to be a crucial part working with powershell
+and the way we are gonna do that is we gonna pipe it to a very special command which is get-member .
+and also we can use alias for this ..
+
+get-service -name bits |get-member 
+get-service -name bits |gm 
+gm is the ALIAS OF THE  get member .
+here get-member is gonna take the object and shows you everything .
+first it shoes what kind of object it is .
+then a list where it tells which one is the specifier and which one is the methods .
+now what i want is to see some parrticular property like name and status for the get-service .
+so i can do this .
+get-service |select.object -property name,status
+or if  i want to get the childitem 
+get-childitem
+and also i can use the alias dir 
+now i want to sort them by name,length then ........... 
+get-childitem |select -property  name,length | sort -property length
+notice how the output!
+its ascending 
+now if i wanna do descending .
+get-childitem |select -property  name,length | sort -property length -descending 
+it changes the sort order and now its descending
+
+get-eventlog -logname system -newest 5
+now when i run this you can see i'm getting all this information across here 
+i would like to take a look at the objevt itself so what im gonna do is bcz i wanna see all the properties 
+ get-eventlog -logname system -newest 5|gm
+i am gonna pipe it to gm 
+now i want to see which property can be ... let's select message 
+ get-eventlog -logname system -newest 5
+ get-eventlog -logname system -newest 5|select  -property eventid , Timewritten, message
+ get-eventlog -logname system -newest 5|select  -property eventid , Timewritten, message| sort -property Timewritten
+
+
+
+so nnow we understood how we can find the properties that i want and just not ones on the   screen but i can find all the properties then just select the 
+ones i want and sort the ones i want now that i have what i want 
+well , i dont want it on the screen  i want to convert it to an  html file so
+ get-eventlog -logname system -newest 5|select  -property eventid , Timewritten, message| sort -property Timewritten | convertTo-html | out-file c:\error.html
+
+
+it's a great one liner its selecting out just the information i want sorting it the way i want 
+stuffing it into a webfile i can now tell the other aadmins that hey when you get up in the morning 
+go check the  webpage if there's any errors in there fix them 
+bcz as you're gonna see later we are gonna automate this , schedule this and make this go 
+for us so that we dont have to type this again once i figured it out .
+to show you it works , 
+type : c:\ html 
+now what this showing ? is a .net object .
+
+
+
+$dir.
+we can see an xml file -->  r_and_j.xml
+say c:\jumpstart\r_and_j.xml
+$x=[xml](cat.\r_and_j.xml)(cat is the same as get content )
+$x 
+$x.gettype()
+--what we did is we made an object where we casted a file and store that into a n obj named $x 
+
+remeber man that a xml file is tedious . you dont wanna deal wit that .
+$x 
+$x.gettype()
+$x.play.act 
+$x.play.act[0] 
+$x.play.act[0].scene 
+$x.play.act[0].speech 
+$x.play.act.scene.speech--> this line tells that i want all the scenes and all the acts 
+$x.pay.act.scene.speech |select -first 1 
+$x.play.act.scene.speech |group speaker | sort count 
+now let's just think about these for a second here i have the xmml the point that ther's a bunch of xml in the world 
+like ypu did't ask it but somebody decided hey here is some xml file thank you ..... world is scary .
+but what we do is 
+if i want to get history of the things that i type 
+you will type get-history 
+so first we casted an xml file into an ibject 
+then we showed the type .
+i driled into acts, scenes .
+then i got all the speches .
+then i also grouped and solved it .
+and that's the way to handle xml files .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

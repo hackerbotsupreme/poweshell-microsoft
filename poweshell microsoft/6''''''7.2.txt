@@ -1,0 +1,69 @@
+2.27
+
+for powershell always refer to the -- https ://powershell.org/wp/
+where you will also see forums where you can also ask questions .
+
+
+get-service | where{$_.status -eq "running"}
+get-help *comparison*
+get-help *operators*
+get-service | where{$PSItem.status -eq "running"}
+get-service | where{$PSItem.status -eq "running" -and $_.name -like "b*"}
+get-stuff | sort| where -somestuff | out-filter
+get-stuff | where -somestuff | sort |out-file 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+get-service | where{$_.status -eq "running"}
+now here where{$_ this portion holds the object  and 
+-eq this one is implying equals .
+you can say why its -eq then why not eq.
+bcz it got a lot of reasons .
+and you can also find these typing--> get-help *comparison*
+or you can say --> get-help *operators*
+you are gonna see a lot of them 
+get-service | where{$_.status -eq "running"}
+here we can also say this like 
+get-service | where{$PSItem.status -eq "running"}
+and we can also extend this even further like 
+get-service | where{$PSItem.status -eq "running" -and $_.name -like "b*"}
+now with this line we are also been able to filter out data like here all the running functions that starts with b.
+
+
+
+get-stuff | sort| where -somestuff | out-filter
+get-stuff | where -somestuff | sort |out-file 
+what do you think is the best performing way to write this ?
+if you think about what is happening here , it does matter where you filter and where you sort. 
+refer to this as you filter as far left as you posiibly can and you gonna see examples 
+where the where object may not be the filter that's furthest left as a matter of fact you see some cool examples 
+
+
+
+
